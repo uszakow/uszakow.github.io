@@ -1,171 +1,83 @@
-<img src="http://coderslab.pl/img/coderslab-logo.png" align="right" width="400"/>
+# ZADANIE – FRONT-END SOFTWARE ENGINEER - Intern
 
-# Projekt
-
-## Przygotowanie
-> Zmodyfikuj plik `webpack.config.js` tak, aby:
-> - zmienna `entryPath` wskazywała na `1_Zadania/Tydzien_1_Dzien_6_2/1_Projekt`
-> - zmienna `entryFile` wskazywała na plik, nad którym aktualnie pracujesz, np. `app.js`
->
-> **Pamiętaj aby po każdej zmianie w pliku `webpack.config.js` przerwać działanie Webpacka (`CTRL+C`) a następnie włączyć go z powrotem (`npm start`).**
-
-Celem warsztatu, jest przygotowanie aplikacji pogodowej, pozyskującej dane z ogólnodostępnych API. Pierwszym krokiem powinno być zapoznanie się ze strukturą projektu, układem plików, dokumentacjami API a także plikiem HTML.
-
-![](screenshot.png)
-
-### Struktura projektu:
-
-```
-css
-  -- style.css (plik ze stylami)
-js
-  app.js (plik główny)
-
-images
-  -- icons (ikony dla projektu)
-
-index.html (plik główny aplikacji)
-```
+Twoim zadaniem jest przygotowanie własnego **Pokedexa**! Korzystając z **PokeAPI** stwórz listę pokemenów, która
+będzie zawierała w sobie podstawowe informacje o każdym z nich.
+Bądź kreatywny - zaproponuj własną interpretację w dowolnej technologii javascriptowej. Testy jednostkowe
+nie są wymagane, jednak w naszej codziennej pracy kładziemy na nie spory nacisk. Możesz skorzystać z
+dostępnych bibliotek UI (jak np. Material UI, Bootstrap).
+## Pamiętaj jednak, aby:
+- można było uruchomić Twoją aplikację używając Node.js w wersji 12,
+- można było uruchomić Twoją aplikację przy użyciu komendy “npm start”,
+- lista zawierała paginację,
+- można było filtrować po wyniku (min. jeden dowolny filtr),
+- aplikacja dobrze wyświetlała się na urządzeniach mobilnych.
 
 
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Założenia
-W aplikacji powinniśmy mieć możliwość odnalezienia współrzędnych konkretnego miejsca i na podstawie tych danych, wyświetlić aktualną i prognozowaną pogodę. Chcemy wyświetlać wszystkie niezbędne informacje:
+## Available Scripts
 
-- Aktualna temperatura
-- Wilgotność
-- Ciśnienie
-- Prędkość wiatru
-- Prognoza pogody na 5 dni w przód
+In the project directory, you can run:
 
+### `npm start`
 
-W warsztacie tym należy korzystać z wszystkich udogodnień ES6, takich jak deklaracje zmiennych przez `const`, `let`, klasowość `class`, funkcje strzałkowe, `import/export`, `async/await`, `fetch` itd.
+Runs the app in the development mode.<br />
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-## Zasady działania
+The page will reload if you make edits.<br />
+You will also see any lint errors in the console.
 
-### Wejście na stronę
-Po wejściu na stronę, powinniśmy wysłać zapytanie do api `IPLocating` aby pobrać aktualną lokalizację ze względu na nasz adres IP. Jeżeli się uda, to należy wysłać kolejne zapytanie ale tym razem do serwisu `DarkSky` aby pobrać aktualną pogodę i wyświetlić ją użytkownikowi.
+### `npm test`
 
-![](weather-app-1.gif)
+Launches the test runner in the interactive watch mode.<br />
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
+### `npm run build`
 
-### Dodanie nowego miasta
-Na stronie znajduje się przycisk "Dodaj miasto". Po jego kliknięciu, powinniśmy wyświetlić ukryta sekcję z formularzem. Po wpisaniu przez użytkownika miasta czy całego adresu, należy wykonać zapytania do `GeoLocating` API aby pobrać długość i szerokość geograficzną. Jeżeli się to uda, należy wysłać kolejne zapytanie ale tym razem do serwisu `DarkSky` aby pobrać aktualną pogodę i wyświetlić ją użytkownikowi. Po pobraniu danych, formularz powinien zniknąć.
+Builds the app for production to the `build` folder.<br />
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-![](weather-app-2.gif)
+The build is minified and the filenames include the hashes.<br />
+Your app is ready to be deployed!
 
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### Ukrywanie/Usuwanie modułu
-Po kliknięciu w przycisk "x" w prawym górnym rogu każdego modułu, powinniśmy go ukryć. Jeżeli jest to moduł pogodowy, możemy go usunąć ze struktury HTML.
+### `npm run eject`
 
-![](weather-app-3.gif)
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-## Przydatne informacje
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-### CORS
-Niektóre z serwisów API (DarkSky) korzystają z [CORS](https://www.codecademy.com/articles/what-is-cors), które uniemożliwia nam wysłanie zapytania kiedy jesteśmy na nieszyfrowanym `localhost`. Aby to ominąć, musimy posłużyć się:
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-``` 
-https://cors-anywhere.herokuapp.com/
-```
+## Learn More
 
-Adres ten, należy umieścić przed całym adresem URL do którego chcemy się dostać. Np.
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-```
-https://cors-anywhere.herokuapp.com/https://api.darksky.net/forecast/123-456-789/17.123,52.312?units=si&lang=pl
-```
+To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Efekt ładowania strony
-Wystarczy, że dodacie do elementu `body` klasę `loading` a pojawi się na całym ekranie spinner który możecie zauważyć na nagraniach wyżej. Aby się go pozbyć, wystarczy usunąć klasę `loading` z elementu `body`.
+### Code Splitting
 
+This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
 
-### Ikony
-W projekcie mamy zainstalowane ikony pogodowe które znajdziecie w folderze `images/icons`.  
+### Analyzing the Bundle Size
 
-Dodatkowo możecie używać ikon Material-Icons. Listę tych ikon możecie znaleźć tutaj: https://material.io/tools/icons.  
-Używamy ich za pomocą:
+This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
 
-```html
-<i class="material-icons">nazwa_ikony</i>
-```
+### Making a Progressive Web App
 
-## API
+This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
 
-### IPLocating
-Serwis http://ip-api.com/ pozwala na uzyskanie aktualnej lokalizacji na podstawie naszego adresu IP. Co ciekawe sami nie musimy go znać. Wystarczy wysłać zapytanie `GET` pod `http://ip-api.com/json/` a w odpowiedzi dostaniemy obiekt `JSON` danymi o naszej lokalizacji. 
+### Advanced Configuration
 
-```json
-{
-  "query": "84.258.81.242",
-  "status": "success",
-  "country": "Poland",
-  "countryCode": "PL",
-  "region": "WP",
-  "regionName": "Greater Poland",
-  "city": "Ostrów Wielkopolski",
-  "zip": "63-400",
-  "lat": 51.6468,
-  "lon": 17.8108,
-  "timezone": "Europe/Warsaw",
-  "isp": "Przedsiebiorstwo Promax Sp. J.",
-  "org": "",
-  "as": "PROMAX"
-}
-```
+This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
 
+### Deployment
 
-### GeoLocating
-**Wymagany jest klucz API.**
+This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
 
-API to pozwala nam wyciągnąć informację o szerokości i długości geograficznej na podstawie wpisanego parametru, np. "Wrocław". Dostaniemy wtedy zwrot informacji który widzisz poniżej. 
+### `npm run build` fails to minify
 
-Należy się zarejestrować, a następnie w zakładce "Api Keys" wygenerować swój klucz i zapisać go w projekcie.
-
-[GraphHopper Directions API with Route Optimization](https://graphhopper.com)  
-Pobranie lokalizacji dla konkretnego adresu: https://graphhopper.com/api/1/geocode?key=wasz_klucz&q=wroclaw
-
-Pod wartość `wroclaw` podstawiamy to co użytkownik wpisał w polu tekstowym naszej aplikacji. 
-
-Response:
-```json
-{
-    "hits": [
-        {
-            "osm_id": 2805690,
-            "osm_type": "R",
-            "extent": [
-                16.8073393,
-                51.2100604,
-                17.1762192,
-                51.0426686
-            ],
-            "country": "Poland",
-            "osm_key": "place",
-            "osm_value": "city",
-            "name": "Wroclaw",
-            "state": "Lower Silesian Voivodeship",
-            "point": {
-                "lng": 17.0326689,
-                "lat": 51.1089776
-            }
-        }
-	  ]
-}
-```
-
-### Darksky
-**Wymagany jest klucz API.**
-
-API odpowiedzialne za dostarczenie nam aktualnej i prognozowanej pogody.
-
-Należy się zarejestrować, wygenerować swój klucz i zapisać go w projekcie.
-
-Pobranie klucza: https://darksky.net/dev  
-Pobranie prognozy pogody: https://api.darksky.net/forecast/key/latitude,longitude?units=si&lang=pl
-
-- Pod wartość `key` podstawiamy nasz klucz wygenerowany przez DarkSky
-- Pod wartość `latitude` podstawiamy wartość `lat` pobraną z GraphHopper czy IP-API
-- Pod wartość `longitude` podstawiamy wartość `lng` pobraną z GraphHopper czy IP-API
-
-
+This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
